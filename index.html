@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tabire Harum</title>
+    <meta name="description" content="Wanderly Travels — curated trips, great prices, unforgettable memories." />
+    <style>
+        :root {
+            --accent: #0ea5a4;
+            --dark: #0f1724;
+            --muted: #6b7280;
+            --card: #ffffffcc;
+            --glass: rgba(255, 255, 255, 0.06);
+            --radius: 14px;
+            --max-width: 1100px;
+            --gap: 24px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #f8fafc, #e6eef0);
+            color: var(--dark);
+            -webkit-font-smoothing: antialiased
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 32px
+        }
+
+
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700
+        }
+
+        .logo .badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #7dd3fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .cta {
+            background: var(--accent);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700
+        }
+
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: var(--gap);
+            align-items: center;
+            margin-top: 18px
+        }
+
+        .hero-left h1 {
+            font-size: 36px;
+            margin: 0 0 12px
+        }
+
+        .hero-left p {
+            color: var(--muted);
+            margin: 0 0 18px
+        }
+
+        .search-card {
+            background: var(--card);
+            backdrop-filter: blur(6px);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(15, 23, 36, 0.06)
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px
+        }
+
+        .search-row input,
+        .search-row select {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #e6eef0
+        }
+
+        .search-row button {
+            background: var(--dark);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            border: none
+        }
+
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 28px
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.04)
+        }
+
+        .card h3 {
+            margin: 0 0 8px
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px
+        }
+
+        .pkg {
+            border-radius: 12px;
+            overflow: hidden;
+            background: white
+        }
+
+        .pkg img {
+            width: 100%;
+            display: block;
+            height: 160px;
+            object-fit: cover
+        }
+
+        .pkg .info {
+            padding: 12px
+        }
+
+        .price {
+            font-weight: 800
+        }
+
+
+        .services {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 22px
+        }
+
+        .service {
+            flex: 1;
+            background: var(--glass);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center
+        }
+
+
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 18px;
+            margin-top: 30px
+        }
+
+        .contact form {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(2, 6, 23, 0.04)
+        }
+
+        .contact form .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e6eef0
+        }
+
+        .contact button {
+            background: var(--accent);
+            color: white;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700
+        }
+
+        footer {
+            margin-top: 36px;
+            padding: 22px 0;
+            color: var(--muted);
+            border-top: 1px solid #eef2f6
+        }
+
+
+        @media (max-width:1000px) {
+            .hero {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .cards,
+            .packages {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media (max-width:720px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none
+            }
+
+            .mobile-nav {
+                display: flex
+            }
+
+            .cards,
+            .packages {
+                grid-template-columns: 1fr
+            }
+
+            .contact {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .mobile-nav {
+            display: none
+        }
+
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            font-weight: 700
+        }
+
+        
+        body {
+            background-size: 200% 200%;
+            animation: bgShift 18s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+       
+        .logo .badge {
+            animation: floatBadge 4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes floatBadge {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-6px) rotate(-2deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cards .card,
+        .packages .pkg,
+        #services .service,
+        .search-card {
+            animation: fadeUp .6s ease both;
+            transition: transform .24s ease, box-shadow .24s ease;
+        }
+
+       
+        .cards .card:nth-child(1) {
+            animation-delay: .08s;
+        }
+
+        .cards .card:nth-child(2) {
+            animation-delay: .18s;
+        }
+
+        .cards .card:nth-child(3) {
+            animation-delay: .28s;
+        }
+
+        .packages .pkg:nth-child(1) {
+            animation-delay: .10s;
+        }
+
+        .packages .pkg:nth-child(2) {
+            animation-delay: .20s;
+        }
+
+        .packages .pkg:nth-child(3) {
+            animation-delay: .30s;
+        }
+
+        #services .service:nth-child(1) {
+            animation-delay: .06s;
+        }
+
+        #services .service:nth-child(2) {
+            animation-delay: .14s;
+        }
+
+        #services .service:nth-child(3) {
+            animation-delay: .22s;
+        }
+
+       
+        .card:hover,
+        .pkg:hover,
+        .search-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 30px rgba(2, 6, 23, 0.12);
+        }
+
+       
+        .pkg img {
+            transition: transform .6s cubic-bezier(.2, .9, .2, 1);
+            will-change: transform;
+        }
+
+        .pkg:hover img {
+            transform: scale(1.06);
+        }
+
+        
+        .cta {
+            transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            filter: brightness(.96);
+            box-shadow: 0 10px 20px rgba(14, 165, 164, 0.12);
+        }
+
+      
+        .search-row button {
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+
+        .search-row button:hover,
+        .search-row button:active,
+        .search-row button:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(15, 23, 36, 0.12);
+        }
+
+        
+        nav a {
+            position: relative;
+            padding-bottom: 6px;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            background: var(--accent);
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            transition: left .18s ease, right .18s ease;
+        }
+
+        nav a:hover::after,
+        nav a:focus::after {
+            left: 0;
+            right: 0;
+        }
+
+       
+        .service {
+            transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(2, 6, 23, 0.06);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+       
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 3px solid rgba(14, 165, 164, 0.12);
+            outline-offset: 3px;
+        }
+
+       
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="badge">TH</div>
+                <div>
+                    <div>Tabire Harum</div>
+                    <div style="font-size:12px;color:var(--muted)">Travels &amp; Agency</div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="#packages">Packages</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a class="cta" href="#book">Book Now</a>
+            </nav>
+
+            <div class="mobile-nav">
+                <a class="cta" href="#book">Book</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-left">
+                <h1>Discover your next Visit</h1>
+                <p>Experience sacred journeys to Makka and Medina with expert guidance and comfort.</p>
+
+                <div class="cards" aria-hidden>
+                    <div class="card">
+                        <h3>Hajj & Umrah Packages</h3>
+                        <p class="muted">Complete pilgrimage packages with accommodation, transport, and guided tours.</p>
+                    </div>
+                    <div class="card">
+                        <h3>24/7 Religious Support</h3>
+                        <p class="muted">Experienced guides, prayer times assistance, and spiritual counseling available.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Best Value Deals</h3>
+                        <p class="muted">Affordable Hajj and Umrah packages with flexible payment and group discounts.</p>
+                    </div>
+                </div>
+
+                <div id="services" class="services">
+                    <div class="service">
+                        <div class="pill">Family</div>
+                        <div class="muted">Kid-friendly itineraries</div>
+                    </div>
+                    <div class="service">
+                        <div class="pill">Visting </div>
+                        <div class="muted">Trekking &amp; experiences</div>
+                    </div>
+                    <div class="service">
+                        <div class="pill">only Luxury</div>
+                        <div class="muted">Curated high-end stays</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside>
+                <div class="search-card">
+                    <strong>Find your trip</strong>
+                    <p class="muted" style="margin-top:6px">Quick search for flights, hotels or package deals</p>
+                    <div style="height:12px"></div>
+                    <div class="search-row">
+                        <input type="text" placeholder="Where to? (city or country)" />
+                        <select>
+                            <option>Round trip</option>
+                            <option>One-way</option>
+                            <option>Multi-city</option>
+                        </select>
+                    </div>
+                    <div style="height:10px"></div>
+                    <div class="search-row">
+                        <input type="date" />
+                        <input type="date" />
+                    </div>
+                    <div style="height:10px"></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+                        <div class="muted">Travellers</div>
+                        <button>Search</button>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section id="packages">
+            <h2 style="margin-top:28px">Popular Packages</h2>
+            <div class="packages">
+                <article class="pkg">
+                    <img src="download (1).jpg"
+                        alt="Beach getaway" />
+                    <div class="info">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <h3>Vist Only Makka</h3>
+                            <div class="price">29,9990 Rs</div>
+                        </div>
+                        <p class="muted" style="margin:8px 0">21 Days · All Ziarat · Flights not included</p><br>
+                        <a class="cta" href="#book">Book</a>
+                    </div>
+                </article>
+
+                <article class="pkg">
+                    <img src="download.jpg"
+                        alt="City break" />
+                    <div class="info">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <h3>Vist Only Madinah</h3>
+                            <div class="price">20,0000 Rs</div>
+                        </div>
+                        <p class="muted" style="margin:8px 0">20 Days · Luxury Hotels</p><br>
+                        <a class="cta" href="#book">Book</a>
+                    </div>
+                </article>
+
+                <article class="pkg">
+                    <img src="download (2).jpg"
+                        alt="Mountain" />
+                    <div class="info">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <h3>Vist Only Baghdad</h3>
+                            <div class="price">21,9000 Rs</div>
+                        </div>
+                        <p class="muted" style="margin:8px 0">19 Days · Vist PLz</p><br>
+                        <a class="cta" href="#book">Book</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div>
+                <h2>Vist a Tarbia Harum </h2>
+                <p class="muted">Location: Orangi Town 5 : No ( 9T9 Food Center ) </p>
+                <p class="muted">Phone: +92 321 1234567</p>
+                <p class="muted"> Email:  Example@gmail.com </p>
+
+                
+            </div>
+
+            <form onsubmit="event.preventDefault();alert('Form submitted — this is a demo.');">
+                <div class="row">
+                    <input type="text" placeholder="Full name" required />
+                    <input type="email" placeholder="Email" required />
+                </div>
+                <div class="row">
+                    <input type="text" placeholder="Destination" />
+                    <input type="text" placeholder="Budget (USD)" />
+                </div>
+                <div style="margin-bottom:10px">
+                    <textarea rows="4" placeholder="Tell us about your trip (dates, interests)"></textarea>
+                </div>
+                <div style="display:flex;gap:10px;justify-content:flex-end">
+                    <button type="submit">Send request</button>
+                </div>
+            </form>
+        </section>
+
+        <footer>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+                <div>
+                    <strong>Tarbie Harum</strong> <span class="muted">— © 2025</span>
+                </div>
+                <div class="muted">Designed with ❤️ · Privacy · Terms</div>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="App.js"></script>
+</html>
